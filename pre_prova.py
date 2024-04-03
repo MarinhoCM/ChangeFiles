@@ -51,6 +51,12 @@ class ChangeFiles:
             file_name = str(file_path).split("\\")[-1]
             logger.error(f"Não foi possivel encontrar o arquivo: {file_name}")
             return False
+        
+    def __str__(self) -> str:
+        return """
+        ChangeFiles():
+            Função responsável por realizar interações e alterações em diretórios.
+        """
 
 
 files = ChangeFiles(r".gitignore")
