@@ -8,13 +8,13 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from unidecode import unidecode
 
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
+from .ChangeFiles import ChangeFiles
 from resource.configs.settings import LINK_SITE_TO_SWEARINGS, LINK_SITE_TO_COMPLIMENTS
 from resource.constraints import H2_STRING_ELEMENT, COMPLAINTS_KEYWORDS
-from ChangeFiles import ChangeFiles
-from LogConfig import LogConfig
 
 # nltk.download("vader_lexicon")
 # nltk.download('punkt')
