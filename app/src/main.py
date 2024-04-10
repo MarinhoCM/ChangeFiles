@@ -12,7 +12,7 @@ if __name__ == "__main__":
     while (
         not (
             text := str(
-                input("Deixe seu comentário o digite 'sair' para sair: ").strip()
+                input("Deixe seu comentário ou digite 'sair' para sair: ").strip()
             )
         )
         in "sair"
