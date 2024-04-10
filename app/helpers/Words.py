@@ -132,13 +132,3 @@ class Words:
             return (
                 "A palavra não foi identificada. Iremos armazena-la para uso posterior"
             )
-
-
-if __name__ == "__main__":
-    # LogConfig()
-    while (
-        not (text := str(input("Deixe seu comentário o digite 'sair' para sair: ").strip()))
-        in "sair"
-    ):
-        word = Words(text=unidecode(text))
-        word.classify_word()
