@@ -44,7 +44,7 @@ class ChangeFiles:
                 return False
 
     @staticmethod
-    def verify_path_existence(file_path) -> bool:
+    def verify_path_existence(file_path: str) -> bool:
         if os.path.exists(str(file_path)):
             return True
         else:

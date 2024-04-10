@@ -1,0 +1,1 @@
+H2_STRING_ELEMENT="Lista de palavrões em português – Xingamentos e Gírias"

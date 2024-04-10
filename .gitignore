@@ -3,3 +3,6 @@ __pycache__/
 *.log
 *.txt
 test.*
+*.env
+*.swp
+venv/
