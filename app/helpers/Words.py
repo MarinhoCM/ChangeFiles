@@ -1,19 +1,28 @@
-import os, sys, requests
+import os, sys, requests  # , nltk
 from bs4 import BeautifulSoup
 from typing import List
 from loguru import logger
+from nltk.util import ngrams
+from nltk.sentiment import SentimentIntensityAnalyzer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from resource.configs.settings import LINK_SITE_TO_SWEARINGS, LINK_SITE_TO_COMPLIMENTS
-from resource.constraints import H2_STRING_ELEMENT
+from resource.constraints import H2_STRING_ELEMENT, COMPLAINTS_KEYWORDS
+
+# nltk.download("vader_lexicon")
+# nltk.download('punkt')
+# nltk.download('stopwords')
 
 
 class Words:
-    def __init__(self) -> None:
+    def __init__(self: object, text: str = " ") -> None:
+        self.text = text
         self.swearings = self.capture_swearings()
-        self.complaints = []
+        self.complaints = self.capture_complaints()
         self.compliments = self.capture_compliments()
 
     def capture_swearings(self: object) -> List[str] | bool:
@@ -37,9 +46,31 @@ class Words:
         logger.success("Palavras Imprópias capturadas com sucesso")
         return swearing
 
-    def capture_complaints(self: object) -> List[str]:
+    def capture_complaints(self: object) -> bool:
         """Função responsável por capturar palávras que expressão uma reclamação"""
-        pass
+
+        stop_words = set(stopwords.words("portuguese"))
+
+        def has_complaint_bigram(bigram):
+            for keyword in COMPLAINTS_KEYWORDS:
+                if keyword in bigram:
+                    return True
+            return False
+
+        tokens = word_tokenize(self.text.lower())
+        tokens = [token for token in tokens if token not in stop_words]
+        bigrams_list = list(ngrams(tokens, 1))
+
+        for bigram in bigrams_list:
+            if has_complaint_bigram(bigram):
+                return True
+
+        sia = SentimentIntensityAnalyzer()
+        sentiment_score = sia.polarity_scores(self.text)
+        if sentiment_score["neg"] > sentiment_score["pos"]:
+            return True
+
+        return False
 
     def capture_compliments(self: object) -> List[str] | bool:
         """Função responsável por capturar palávras que expressão um elogio"""
@@ -64,7 +95,8 @@ class Words:
 
 
 if __name__ == "__main__":
-    words = Words()
-    print(words.swearings)
-    print("\n\n\n")
-    print(words.compliments)
+    words = Words("horrivel")
+    # print(words.swearings)
+    # print("\n\n\n")
+    # print(words.compliments)
+    print(words.capture_complaints())
