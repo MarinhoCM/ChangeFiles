@@ -45,15 +45,6 @@ class ChangeFiles:
                 )
                 return False
 
-    def check_text_in_file(self, file_path: str, text: str) -> bool:
-        if os.path.exists(file_path):
-            with open(file_path, "r", encoding="utf-8") as file:
-                lines = file.readlines()
-                for line in lines:
-                    if text in line.strip() and text in line.split(":")[-1].strip():
-                        return True
-        return False
-
     def save_to_file(self, text: str) -> None:
         folder = "classified_texts"
         now = datetime.datetime.now()
@@ -66,6 +57,16 @@ class ChangeFiles:
                 file.write(f"{timestamp}:{text.strip()}\n")
         else:
             logger.info("O texto já foi armazenado anteriormente")
+
+    @staticmethod
+    def check_text_in_file(file_path: str, text: str) -> bool:
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as file:
+                lines = file.readlines()
+                for line in lines:
+                    if text in line.strip() and text in line.split(":")[-1].strip():
+                        return True
+        return False
 
     @staticmethod
     def verify_path_existence(file_path: str) -> bool:
