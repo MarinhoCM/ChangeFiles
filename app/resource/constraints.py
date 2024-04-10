@@ -145,4 +145,5 @@ COMPLAINTS_KEYWORDS = [
     "inutilizável",
     "horrivel",
     "inadmissível",
+    "pessimo"
 ]
