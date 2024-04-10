@@ -10,4 +10,10 @@ try:
     LINK_SITE_TO_COMPLIMENTS = os.environ["LINK_SITE_TO_COMPLIMENTS"]
     logger.success("VARIÁVEIS DE AMBIENTE CARREGADAS COM SUCESSO")
 except KeyError as e:
-    raise KeyError(f"Ocorreu um erro ao tentar carregar a váriavel de ambiente: {e}")
+    message = (
+        f"Ocorreu um erro ao tentar carregar a váriavel de ambiente: {e}\n"
+        + "Verifique se ela existe no arquivo '.env' presente em "
+        + "'app//resource//configs'"
+    )
+    logger.error(message)
+    raise KeyError(message)
