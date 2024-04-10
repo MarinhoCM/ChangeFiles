@@ -1,4 +1,4 @@
-# Desáfio para prova
+# Desafio para prova
 
 #### Você foi contratado para desenvolver um sistema para registrar mensagens de clientes. O sistema deve seguir as seguintes diretrizes:
 
