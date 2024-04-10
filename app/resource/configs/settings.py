@@ -8,7 +8,6 @@ load_dotenv()
 try:
     LINK_SITE_TO_SWEARINGS = os.environ["LINK_SITE_TO_SWEARINGS"]
     LINK_SITE_TO_COMPLIMENTS = os.environ["LINK_SITE_TO_COMPLIMENTS"]
-    logger.success("VARIÁVEIS DE AMBIENTE CARREGADAS COM SUCESSO")
 except KeyError as e:
     message = (
         f"Ocorreu um erro ao tentar carregar a váriavel de ambiente: {e}\n"
@@ -17,3 +16,5 @@ except KeyError as e:
     )
     logger.error(message)
     raise KeyError(message)
+else:
+    logger.success("VARIÁVEIS DE AMBIENTE CARREGADAS COM SUCESSO")
