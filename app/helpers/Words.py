@@ -92,11 +92,3 @@ class Words:
 
         logger.success("Palavras que expressão elogios capturadas com sucesso")
         return compliments
-
-
-if __name__ == "__main__":
-    words = Words("horrivel")
-    # print(words.swearings)
-    # print("\n\n\n")
-    # print(words.compliments)
-    print(words.capture_complaints())

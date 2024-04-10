@@ -14,11 +14,13 @@ class ChangeFiles:
                     logger.success(f"Texto extraido do arquivo: \n{text}")
                     return text
 
-    def insert_text_in_file(self) -> bool:
+    def insert_text_in_file(self, text_to_change) -> bool:
         if self.verify_path_existence(self.file_name):
             with open(self.file_name, "a", encoding="utf-8") as file_content:
-                text_to_change = str(input("Digite o texto que deseja inserir: "))
                 file_content.write("\n" + text_to_change)
+        else:
+            with open(self.file_name, "a", encoding="utf-8") as file_content:
+                file_content.write(text_to_change)        
 
     def delete_file(self) -> bool:
         if self.verify_path_existence(self.file_name):
@@ -49,7 +51,7 @@ class ChangeFiles:
             return True
         else:
             file_name = str(file_path).split("\\")[-1]
-            logger.error(f"Não foi possivel encontrar o arquivo: {file_name}")
+            logger.error(f"Não foi possivel encontrar o arquivo: {file_name}. O arquivo será criado.")
             return False
 
     def __str__(self) -> str:
