@@ -1,4 +1,4 @@
-import os, sys, requests  # , nltk
+import os, sys, requests, nltk
 from bs4 import BeautifulSoup
 from typing import List
 from loguru import logger
@@ -16,9 +16,9 @@ from .ChangeFiles import ChangeFiles
 from resource.configs.settings import LINK_SITE_TO_SWEARINGS, LINK_SITE_TO_COMPLIMENTS
 from resource.constraints import H2_STRING_ELEMENT, COMPLAINTS_KEYWORDS
 
-# nltk.download("vader_lexicon")
-# nltk.download('punkt')
-# nltk.download('stopwords')
+nltk.download("vader_lexicon")
+nltk.download('punkt')
+nltk.download('stopwords')
 
 
 class Words:
